@@ -1,0 +1,41 @@
+{% set name = "dash-bio" %}
+{% set pkgname = "dash_bio" %}
+{% set version = "0.2.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ pkgname }}-{{ version }}.tar.gz"
+  sha256: "526d6804646891cbed75b5ecc8001ed73cff0f2f3874c1b42b8b34007c8af63e"
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - dash >=1.0.0
+    - pandas
+    - plotly
+    - python
+    - scikit-learn >=0.20.1
+    - scipy
+
+test:
+  imports:
+    - dash_bio
+    - dash_bio.component_factory
+
+about:
+  home: "http://github.com/plotly/dash-bio"
+  license: "MIT"
+  license_family: "MIT"
+  license_file: ""
+  summary: "dash_bio"
+  doc_url: "https://dash.plot.ly/dash-bio"
+  dev_url: "http://github.com/plotly/dash-bio"
